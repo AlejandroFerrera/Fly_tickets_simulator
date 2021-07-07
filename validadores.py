@@ -1,18 +1,15 @@
-
-def enter_number(datatype,text='Ingrese numero'):
-    number=""
-    while(type(number)!=datatype or number<=0):
+def in_range_number(min,max,text,dtype = int):    
+    number = min - 1
+    while number < min or number > max:
         try:
-            number=datatype(input(text))
-        except:
-            print('Debe ser un numero')
+            number = dtype(input(text))
+            assert number >= min and number <= max
+        except ValueError:
+            print('Debe ser un valor entero')
+        except AssertionError:
+            print('El numero no se encuentra dentro del rango indicado')        
+    
     return number
-
-def in_range_number(min,max,text):    
-    data=enter_number(int,text)
-    while data<min or data>max:
-        data=enter_number(int,text)
-    return data
 
 
 

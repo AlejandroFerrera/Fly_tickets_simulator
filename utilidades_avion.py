@@ -4,7 +4,7 @@ import locale
 locale.setlocale(locale.LC_ALL,'')
 
 x_roja = '\033[91m'+'\033[1m'+'X '+'\033[0m'
-                                                                        #IMPRIMIR 
+                                                                    #IMPRIMIR 
 def print_line(rango_filas,array,space = False):
     cant_columnas = len(array[0])
 
@@ -67,7 +67,7 @@ def register_client():
     while(not nombre.isalpha()):
         nombre=input('Ingrese nombre: ')
     
-    telefono = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos): ')
+    telefono = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos) +569:')
     
     banco = val.in_range_number(1,2,'Su Banco es BANCO-DUOC?: 1-SI 2-NO: ')
     
@@ -126,7 +126,7 @@ def modify(number,sales_record):
                 
                 opcion = 0
                 while opcion < 1 or opcion > 2:
-                    opcion = val.enter_number(int,'Que dato desea modificar:\n1-Nombre\n2-Telefono\n-->')
+                    opcion = val.in_range_number(1,2,'Que dato desea modificar:\n1-Nombre\n2-Telefono\n-->')
 
                 if opcion == 1:
                     nombre = ""
