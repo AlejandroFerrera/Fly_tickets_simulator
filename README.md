@@ -1,4 +1,4 @@
-# Prueba_4
+# Simulador de compra de tickets de avion
 Vuelos-Duoc requiere contratar de tus servicios de informática para el desarrollo de un 
 proyecto en Python para la venta de sus pasajes, el sistema es bastante simple, lo primero que 
 hay que tener en cuenta es que son en total 41 asientos por avión, como se ve a continuación:
