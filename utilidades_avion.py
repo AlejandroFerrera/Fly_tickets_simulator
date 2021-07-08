@@ -38,62 +38,12 @@ def print_sales(sales_record):
         print(f'    {element[0]}    \t\t{element[2].get("run")},{element[2].get("Nombre")}')
                                                     
                                                                   #REGISTRO DE CLIENTES
-def dig_verificador(run):
-    mult = 2
-    suma = 0
-    for i in range(len(run)-1,-1,-1):
-        suma += int(run[i]) * mult
-        mult += 1
-        if mult == 8 : mult = 2 
-    
-    digito = 11 - (suma % 11)
-    if digito == 11 : digito = 0 
-    if digito == 10 : digito = 'k'
-    
-    return digito
-
-def RUN():
-    valido = False
-    while (not valido):
-        try:
-            run=input('Ingrese el RUN(Con guion y digito verificador): ') 
-
-            if not (len(run) == 10 and run[:8].isnumeric() and run[8]=='-'): raise Exception
-            assert run[9] == str(dig_verificador(run[:8]))
-            
-            valido = True
-        
-        except AssertionError:
-            print('Error en la validacion del digito verificiador')
-        except BaseException:
-            print('Error en formato, intente: (12345678-9)')
-
-    return run
-
-def nombre_valido():
-    while True:
-        try:
-            nombre = input('Ingrese nombre: ')
-            assert nombre.isalpha()
-            break
-        except AssertionError:
-            print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
-    return nombre
 
 def register_client():
     
-    run = RUN()
+    run = val.RUN()
 
-    nombre = nombre_valido()
-    
-    while True:
-        try:
-            nombre=input('Ingrese nombre: ')
-            assert nombre.isalpha()
-            break
-        except AssertionError:
-            print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
-
+    nombre = val.nombre_valido()
     
     telefono = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos) +569:')
     
@@ -102,10 +52,6 @@ def register_client():
     banco = 'bancoDuoc' if banco == 1 else 'otro'
 
     return {'run': run, 'Nombre': nombre.capitalize(), 'Telefono': telefono,'Banco':banco}
-
-                                                                 
-
-
                                                                    
                                                                    #GESTOR DE TICKETS
 def buy_ticket(number,array,sales_record):
@@ -149,7 +95,7 @@ def modify(number,sales_record):
     
     for element in sales_record:
         if element[0] == number:
-            run_comprobar = RUN()
+            run_comprobar = val.RUN()
             if run_comprobar == element[2].get('run'):
                 
                 opcion = 0
