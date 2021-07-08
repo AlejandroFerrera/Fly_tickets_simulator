@@ -55,17 +55,45 @@ def dig_verificador(run):
 def RUN():
     valido = False
     while (not valido):
-        run=input('Ingrese el RUN(Con digito verificador): ') 
-        valido = (len(run) == 10 and run[:8].isnumeric() and run[8]=='-' and run[9] == str(dig_verificador(run[:8])))
+        try:
+            run=input('Ingrese el RUN(Con guion y digito verificador): ') 
+
+            if not (len(run) == 10 and run[:8].isnumeric() and run[8]=='-'): raise Exception
+            assert run[9] == str(dig_verificador(run[:8]))
+            
+            valido = True
+        
+        except AssertionError:
+            print('Error en la validacion del digito verificiador')
+        except BaseException:
+            print('Error en formato, intente: (12345678-9)')
+
     return run
+
+def nombre_valido():
+    while True:
+        try:
+            nombre = input('Ingrese nombre: ')
+            assert nombre.isalpha()
+            break
+        except AssertionError:
+            print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
+    return nombre
 
 def register_client():
     
     run = RUN()
+
+    nombre = nombre_valido()
     
-    nombre= ""
-    while(not nombre.isalpha()):
-        nombre=input('Ingrese nombre: ')
+    while True:
+        try:
+            nombre=input('Ingrese nombre: ')
+            assert nombre.isalpha()
+            break
+        except AssertionError:
+            print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
+
     
     telefono = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos) +569:')
     
@@ -111,7 +139,7 @@ def delete_ticket(number,array,sales_record):
     for element in sales_record:
         if element[0] == number:
             array[element[1]] = number       
-            sales_record.pop(sales_record.index(element))
+            sales_record.remove(element)
             print(f'\nSe ha anulado la compra del asiento {number} perteneciente a {(element[2].get("Nombre"))}')
             break
     else:
@@ -136,7 +164,7 @@ def modify(number,sales_record):
                     print('\nNombre actualizado')
                 
                 if opcion == 2:
-                    telefono = val.in_range_number(10000000,99999999,'Ingrese nuevo telefono(8 Digitos): ')
+                    telefono = val.in_range_number(10000000,99999999,'Ingrese nuevo telefono(8 Digitos) +569: ')
                     element[2]['Telefono'] = telefono
                     print(f'\nTelefono de {element[2].get("Nombre")} modificado')
             else:
