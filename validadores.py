@@ -39,13 +39,12 @@ def nombre_valido():
             print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
     return nombre
 
-
 def in_range_number(min,max,text,dtype = int):    
-    number = min - 1
-    while number < min or number > max:
+    while True:
         try:
             number = dtype(input(text))
             assert number >= min and number <= max
+            break
         except ValueError:
             print('Debe ser un valor entero')
         except AssertionError:
