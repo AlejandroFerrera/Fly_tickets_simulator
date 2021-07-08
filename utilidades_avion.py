@@ -67,8 +67,8 @@ def buy_ticket(number,array,sales_record):
         pos = np.where (array == number)
 
     array[pos] = x_roja                          
-    cliente = register_client()
-    sales_record.append((number,pos,cliente)) 
+    client = register_client()
+    sales_record.append((number,pos,client)) 
     
 #Los registros de venta son una tupla de 3 elementos, donde el primer elemento es el numero de asiento,
 #segundo la posicion dentro del array para facilitar la anulacion posteriormente y por ultimo los datos del cliente.
@@ -77,7 +77,7 @@ def buy_ticket(number,array,sales_record):
         total = 78900
     else:
         total = 240000
-    if cliente['Bank'] == 'bancoDuoc' : total *= 0.85
+    if client['Bank'] == 'bancoDuoc' : total *= 0.85
     
     print(f'\nHa comprado el asiento {number}, su total a pagar es {locale.currency(total,grouping=True)}')
     
