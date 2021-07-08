@@ -6,6 +6,7 @@ locale.setlocale(locale.LC_ALL,'')
 x_roja = '\033[91m'+'\033[1m'+'X '+'\033[0m'
                                                                     #IMPRIMIR 
 def print_line(rango_filas,array,space = False):
+    
     cant_columnas = len(array[0])
 
     for fila in range(rango_filas[0],rango_filas[1]):
@@ -35,7 +36,7 @@ def print_fly(array):
 def print_sales(sales_record):
     print('\nNro.Asiento:\t\tCliente:')
     for element in sales_record:
-        print(f'    {element[0]}    \t\t{element[2].get("run")},{element[2].get("Nombre")}')
+        print(f'    {element[0]}    \t\t{element[2].get("run")},{element[2].get("Name")}')
                                                     
                                                                   #REGISTRO DE CLIENTES
 
@@ -43,15 +44,15 @@ def register_client():
     
     run = val.RUN()
 
-    nombre = val.nombre_valido()
+    name = val.valid_name('Ingrese nombre: ')
     
-    telefono = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos) +569:')
+    phone = val.in_range_number(10000000,99999999,'Ingrese telefono(8 Digitos) +569:')
     
-    banco = val.in_range_number(1,2,'Su Banco es BANCO-DUOC?: 1-SI 2-NO: ')
+    bank = val.in_range_number(1,2,'Su Banco es BANCO-DUOC?: 1-SI 2-NO: ')
     
-    banco = 'bancoDuoc' if banco == 1 else 'otro'
+    bank = 'bancoDuoc' if bank == 1 else 'otro'
 
-    return {'run': run, 'Nombre': nombre.capitalize(), 'Telefono': telefono,'Banco':banco}
+    return {'run': run, 'Name': name.capitalize(), 'Phone': phone,'Bank':bank}
                                                                    
                                                                    #GESTOR DE TICKETS
 def buy_ticket(number,array,sales_record):
@@ -76,7 +77,7 @@ def buy_ticket(number,array,sales_record):
         total = 78900
     else:
         total = 240000
-    if cliente['Banco'] == 'bancoDuoc' : total *= 0.85
+    if cliente['Bank'] == 'bancoDuoc' : total *= 0.85
     
     print(f'\nHa comprado el asiento {number}, su total a pagar es {locale.currency(total,grouping=True)}')
     
@@ -86,7 +87,7 @@ def delete_ticket(number,array,sales_record):
         if element[0] == number:
             array[element[1]] = number       
             sales_record.remove(element)
-            print(f'\nSe ha anulado la compra del asiento {number} perteneciente a {(element[2].get("Nombre"))}')
+            print(f'\nSe ha anulado la compra del asiento {number} perteneciente a {(element[2].get("Name"))}')
             break
     else:
         print('\nEl asiento no ha sido vendido')
@@ -95,24 +96,20 @@ def modify(number,sales_record):
     
     for element in sales_record:
         if element[0] == number:
-            run_comprobar = val.RUN()
-            if run_comprobar == element[2].get('run'):
+            run_to_check = val.RUN()
+            if run_to_check == element[2].get('run'):
                 
-                opcion = 0
-                while opcion < 1 or opcion > 2:
-                    opcion = val.in_range_number(1,2,'Que dato desea modificar:\n1-Nombre\n2-Telefono\n-->')
+                option = val.in_range_number(1,2,'Que dato desea modificar:\n1-Nombre\n2-Telefono\n-->')
 
-                if opcion == 1:
-                    nombre = ""
-                    while(not nombre.isalpha()):
-                        nombre=input('Ingrese nombre para actualizar: ')
-                    element[2]['Nombre'] = nombre
+                if option == 1:
+                    name = val.valid_name('Ingrese nombre para actualizar: ')
+                    element[2]['Name'] = name
                     print('\nNombre actualizado')
                 
-                if opcion == 2:
-                    telefono = val.in_range_number(10000000,99999999,'Ingrese nuevo telefono(8 Digitos) +569: ')
-                    element[2]['Telefono'] = telefono
-                    print(f'\nTelefono de {element[2].get("Nombre")} modificado')
+                if option == 2:
+                    phone = val.in_range_number(10000000,99999999,'Ingrese nuevo telefono(8 Digitos) +569: ')
+                    element[2]['Phone'] = phone
+                    print(f'\nTelefono de {element[2].get("Name")} modificado')
             else:
                 print('\nEl numero de asiento no coincide con el RUN')
             break

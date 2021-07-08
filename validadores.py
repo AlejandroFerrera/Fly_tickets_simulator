@@ -15,7 +15,7 @@ def dig_verificador(run):
 def RUN():
     while True:
         try:
-            run=input('Ingrese el RUN(Con guion y digito verificador): ') 
+            run=input('Ingrese el RUN(Sin puntos, con guion y digito verificador): ') 
 
             if not (len(run) == 10 and run[:8].isnumeric() and run[8]=='-'): raise Exception
             assert run[9] == str(dig_verificador(run[:8]))
@@ -29,15 +29,15 @@ def RUN():
 
     return run
 
-def nombre_valido():
+def valid_name(text):
     while True:
         try:
-            nombre = input('Ingrese nombre: ')
-            assert nombre.isalpha()
+            name = input(text)
+            assert name.isalpha()
             break
         except AssertionError:
-            print('El nombre no puede ser vacio, contener espacios y deben ser solo letras')
-    return nombre
+            print('La entrada no puede ser vacia, contener espacios y debe ser solo letras')
+    return name
 
 def in_range_number(min,max,text,dtype = int):    
     while True:
