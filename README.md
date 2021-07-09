@@ -1,4 +1,5 @@
 # Simulador de compra de tickets de avion
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/AlejandroFerrera/Fly_tickets_simulator.git)
 ## Ejecutar Ejercicio_Avion como archivo main, los validadores y utilidades deben estar en el mismo directorio 
 ### Requisitos: Tener instalado Numpy : --> pip install numpy
 Vuelos-Duoc requiere contratar de tus servicios de informática para el desarrollo de un 
