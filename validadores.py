@@ -6,11 +6,11 @@ def dig_verificador(run):
         mult += 1
         if mult == 8 : mult = 2 
     
-    digito = 11 - (suma % 11)
-    if digito == 11 : digito = 0 
-    if digito == 10 : digito = 'k'
+    digit = 11 - (suma % 11)
+    if digit == 11 : digit = 0 
+    if digit == 10 : digit = 'k'
     
-    return digito
+    return digit
 
 def RUN():
     while True:

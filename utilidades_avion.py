@@ -5,23 +5,23 @@ locale.setlocale(locale.LC_ALL,'')
 
 x_roja = '\033[91m'+'\033[1m'+'X '+'\033[0m'
                                                                     #IMPRIMIR 
-def print_line(rango_filas,array,space = False):
+def print_line(row_range,array,space = False):
     
-    cant_columnas = len(array[0])
+    columns = len(array[0])
 
-    for fila in range(rango_filas[0],rango_filas[1]):
-        for columna in range(cant_columnas):
-            if columna == 0: print('|',end=" ")
-            if columna == 2:
-                print(array[fila,columna],end="\t     ") 
+    for row in range(row_range[0],row_range[1]):
+        for column in range(columns):
+            if column == 0: print('|',end=" ")
+            if column == 2:
+                print(array[row,column],end="\t     ") 
             else:
-                if (len(str(array[fila,columna]))==1): 
-                    print(array[fila,columna],end="    ")
+                if (len(str(array[row,column]))==1): 
+                    print(array[row,column],end="    ")
                 else:
-                    print(array[fila,columna],end="   ")
+                    print(array[row,column],end="   ")
         else : print('|')
         if space == True : print()
-        if fila != rango_filas[1]-1 : print()
+        if row != row_range[1]-1 : print()
 
 
 def print_fly(array):
@@ -39,7 +39,6 @@ def print_sales(sales_record):
         print(f'    {element[0]}    \t\t{element[2].get("run")},{element[2].get("Name")}')
                                                     
                                                                   #REGISTRO DE CLIENTES
-
 def register_client():
     
     run = val.RUN()
@@ -53,6 +52,7 @@ def register_client():
     bank = 'bancoDuoc' if bank == 1 else 'otro'
 
     return {'run': run, 'Name': name.capitalize(), 'Phone': phone,'Bank':bank}
+
                                                                    
                                                                    #GESTOR DE TICKETS
 def buy_ticket(number,array,sales_record):
