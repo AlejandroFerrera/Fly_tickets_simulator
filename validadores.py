@@ -1,4 +1,4 @@
-def dig_verificador(run):
+def check_digit(run):
     mult = 2
     suma = 0
     for i in range(len(run)-1,-1,-1):
@@ -18,7 +18,7 @@ def RUN():
             run=input('Ingrese el RUN(Sin puntos, con guion y digito verificador): ') 
 
             if not (len(run) == 10 and run[:8].isnumeric() and run[8]=='-'): raise Exception
-            assert run[9] == str(dig_verificador(run[:8]))
+            assert run[9] == str(check_digit(run[:8]))
             
             break
         

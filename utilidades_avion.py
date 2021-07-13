@@ -3,7 +3,7 @@ import numpy as np
 import locale
 locale.setlocale(locale.LC_ALL,'')
 
-x_roja = '\033[91m'+'\033[1m'+'X '+'\033[0m'
+RED_X = '\033[91m'+'\033[1m'+'X '+'\033[0m'
                                                                     #IMPRIMIR 
 def print_line(row_range,array,space = False):
     
@@ -66,7 +66,7 @@ def buy_ticket(number,array,sales_record):
         number = val.in_range_number(1,42,'El asiento no se encuentra disponible, intente con otro: ')
         pos = np.where (array == number)
 
-    array[pos] = x_roja                          
+    array[pos] = RED_X                          
     client = register_client()
     sales_record.append((number,pos,client)) 
     
@@ -92,7 +92,7 @@ def delete_ticket(number,array,sales_record):
     else:
         print('\nEl asiento no ha sido vendido')
 
-def modify(number,sales_record):
+def modify_ticket(number,sales_record):
     
     for element in sales_record:
         if element[0] == number:

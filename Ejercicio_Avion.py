@@ -8,7 +8,7 @@ plane = np.arange(1,43,dtype='object').reshape(7,6)
 sales = []
 
 while True:
-    option = val.in_range_number(1,6,('\nBIENVENIDO A VUELOS-DUOC:\n\n1-Ver asientos disponibles \n2-Comprar asiento \n3-Anular vuelo \n4-Modificar datos de pasajero\n5-Ver registro de sales \n6-Salir \n--> ').center(500))
+    option = val.in_range_number(1,6,'\nBIENVENIDO A VUELOS-DUOC:\n\n1-Ver asientos disponibles \n2-Comprar asiento \n3-Anular vuelo \n4-Modificar datos de pasajero\n5-Ver registro de sales \n6-Salir \n--> ')
     
     if option == 1:
         print_fly(plane)
@@ -32,7 +32,7 @@ while True:
             print('\nAun no se han comprado vuelos')
         else:
             seat = val.in_range_number(1,42,'De que asiento desea modificar datos del cliente(Entre 1 y 42): ')   
-            modify(seat,sales)
+            modify_ticket(seat,sales)
 
     elif option == 5:
         if len(sales) == 0:
